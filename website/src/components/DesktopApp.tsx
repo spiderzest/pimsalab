@@ -143,7 +143,7 @@ export default function DesktopApp({ dark }: Props) {
               dark ? 'bg-black/30 text-indigo-300' : 'bg-white text-indigo-600 border border-gray-200'
             }`}>
               <span className={`select-none ${dark ? 'text-[#6e6b82]' : 'text-gray-300'}`}>$</span>
-              <code className="flex-1 select-all">brew install --cask spiderzest/tap/pimsalab</code>
+              <code className="flex-1 select-all">brew install --cask --no-quarantine spiderzest/tap/pimsalab</code>
             </div>
           </div>
 
