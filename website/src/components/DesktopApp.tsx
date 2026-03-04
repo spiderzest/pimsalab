@@ -135,6 +135,31 @@ export default function DesktopApp({ dark }: Props) {
           <p className={`text-center text-xs ${dark ? 'text-[#4a4760]' : 'text-gray-400'}`}>
             v{VERSION} &middot; macOS 12+ &middot; Windows 10+ &middot; ฟรี
           </p>
+
+          {/* macOS Gatekeeper notice */}
+          <div className={`mt-8 max-w-lg mx-auto rounded-2xl p-5 text-sm ${
+            dark ? 'bg-amber-500/5 border border-amber-500/10' : 'bg-amber-50 border border-amber-100'
+          }`}>
+            <div className="flex items-start gap-3">
+              <span className="text-amber-400 text-lg shrink-0">&#9888;</span>
+              <div>
+                <p className={`font-medium mb-2 ${dark ? 'text-amber-300' : 'text-amber-700'}`}>
+                  macOS แจ้งว่า "is damaged"?
+                </p>
+                <p className={`mb-3 leading-relaxed ${dark ? 'text-[#9895ad]' : 'text-gray-600'}`}>
+                  แอปยังไม่ได้ sign กับ Apple — ไม่ได้เสียหายจริง เปิด Terminal แล้วรัน:
+                </p>
+                <code className={`block rounded-lg px-3 py-2 text-xs font-mono mb-1 ${
+                  dark ? 'bg-black/30 text-indigo-300' : 'bg-white text-indigo-600 border border-gray-200'
+                }`}>
+                  xattr -cr ~/Downloads/PimSalab_*.dmg
+                </code>
+                <p className={`text-xs mt-2 ${dark ? 'text-[#6e6b82]' : 'text-gray-400'}`}>
+                  แล้วเปิดไฟล์ .dmg อีกครั้ง
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
