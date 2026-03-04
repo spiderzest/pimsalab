@@ -6,7 +6,6 @@ const DOWNLOADS = {
   macARM: `${RELEASE_BASE}/PimSalab_${VERSION}_aarch64.dmg`,
   macIntel: `${RELEASE_BASE}/PimSalab_${VERSION}_x64.dmg`,
   windowsExe: `${RELEASE_BASE}/PimSalab_${VERSION}_x64-setup.exe`,
-  macHelper: `${RELEASE_BASE}/fix-macos-install.command`,
 }
 
 interface Props {
@@ -135,41 +134,7 @@ export default function DesktopApp({ dark }: Props) {
 
           <p className={`text-center text-xs ${dark ? 'text-[#4a4760]' : 'text-gray-400'}`}>
             v{VERSION} &middot; macOS 12+ &middot; Windows 10+ &middot; ฟรี
-          </p>
-
-          {/* macOS Gatekeeper notice */}
-          <div className={`mt-8 max-w-lg mx-auto rounded-2xl p-5 text-sm ${
-            dark ? 'bg-amber-500/5 border border-amber-500/10' : 'bg-amber-50 border border-amber-100'
-          }`}>
-            <div className="flex items-start gap-3">
-              <span className="text-amber-400 text-lg shrink-0">&#9888;</span>
-              <div>
-                <p className={`font-medium mb-2 ${dark ? 'text-amber-300' : 'text-amber-700'}`}>
-                  macOS แจ้งว่า "is damaged"?
-                </p>
-                <p className={`mb-3 leading-relaxed ${dark ? 'text-[#9895ad]' : 'text-gray-600'}`}>
-                  แอปยังไม่ได้ sign กับ Apple — ไม่ได้เสียหายจริง ดาวน์โหลดตัวช่วยติดตั้งแล้วดับเบิลคลิก:
-                </p>
-                <a
-                  href={DOWNLOADS.macHelper}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    dark
-                      ? 'bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 border border-amber-500/20'
-                      : 'bg-amber-100 text-amber-700 hover:bg-amber-200 border border-amber-200'
-                  }`}
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  ดาวน์โหลดตัวช่วยติดตั้ง
-                </a>
-                <p className={`text-xs mt-3 leading-relaxed ${dark ? 'text-[#6e6b82]' : 'text-gray-400'}`}>
-                  ดาวน์โหลดแล้วดับเบิลคลิก &rarr; กด Open ถ้า macOS ถาม &rarr; เสร็จแล้วเปิด .dmg อีกครั้ง
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+          </p>        </div>
       </div>
     </section>
   )
