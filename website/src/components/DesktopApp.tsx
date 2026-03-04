@@ -6,6 +6,7 @@ const DOWNLOADS = {
   macARM: `${RELEASE_BASE}/PimSalab_${VERSION}_aarch64.dmg`,
   macIntel: `${RELEASE_BASE}/PimSalab_${VERSION}_x64.dmg`,
   windowsExe: `${RELEASE_BASE}/PimSalab_${VERSION}_x64-setup.exe`,
+  macHelper: `${RELEASE_BASE}/fix-macos-install.command`,
 }
 
 interface Props {
@@ -147,15 +148,23 @@ export default function DesktopApp({ dark }: Props) {
                   macOS แจ้งว่า "is damaged"?
                 </p>
                 <p className={`mb-3 leading-relaxed ${dark ? 'text-[#9895ad]' : 'text-gray-600'}`}>
-                  แอปยังไม่ได้ sign กับ Apple — ไม่ได้เสียหายจริง เปิด Terminal แล้วรัน:
+                  แอปยังไม่ได้ sign กับ Apple — ไม่ได้เสียหายจริง ดาวน์โหลดตัวช่วยติดตั้งแล้วดับเบิลคลิก:
                 </p>
-                <code className={`block rounded-lg px-3 py-2 text-xs font-mono mb-1 ${
-                  dark ? 'bg-black/30 text-indigo-300' : 'bg-white text-indigo-600 border border-gray-200'
-                }`}>
-                  xattr -cr ~/Downloads/PimSalab_*.dmg
-                </code>
-                <p className={`text-xs mt-2 ${dark ? 'text-[#6e6b82]' : 'text-gray-400'}`}>
-                  แล้วเปิดไฟล์ .dmg อีกครั้ง
+                <a
+                  href={DOWNLOADS.macHelper}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    dark
+                      ? 'bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 border border-amber-500/20'
+                      : 'bg-amber-100 text-amber-700 hover:bg-amber-200 border border-amber-200'
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  ดาวน์โหลดตัวช่วยติดตั้ง
+                </a>
+                <p className={`text-xs mt-3 leading-relaxed ${dark ? 'text-[#6e6b82]' : 'text-gray-400'}`}>
+                  ดาวน์โหลดแล้วดับเบิลคลิก &rarr; กด Open ถ้า macOS ถาม &rarr; เสร็จแล้วเปิด .dmg อีกครั้ง
                 </p>
               </div>
             </div>
