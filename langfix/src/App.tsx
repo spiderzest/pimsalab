@@ -145,7 +145,7 @@ export default function App() {
 
           {showPanel && (
             <div className="mt-4 animate-fade-up">
-              <ConversionPanel layout={layout} darkMode={darkMode} />
+              <ConversionPanel layout={layout} />
             </div>
           )}
         </div>

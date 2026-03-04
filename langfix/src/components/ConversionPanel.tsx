@@ -7,10 +7,9 @@ type Mode = 'auto' | 'en-to-th' | 'th-to-en';
 
 interface ConversionPanelProps {
   layout: Layout;
-  darkMode?: boolean;
 }
 
-export default function ConversionPanel({ layout, darkMode = true }: ConversionPanelProps) {
+export default function ConversionPanel({ layout }: ConversionPanelProps) {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<DetectionResult | null>(null);
   const [mode, setMode] = useState<Mode>('auto');
