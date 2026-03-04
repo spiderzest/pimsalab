@@ -70,7 +70,9 @@ export default function DesktopApp({ dark }: Props) {
           {/* Download buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a
-              href="#"
+              href="https://github.com/spiderzest/pimsalab/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`group flex items-center gap-3 px-7 h-14 rounded-2xl text-base font-semibold transition-all duration-200 ${
                 os === 'mac'
                   ? 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
@@ -89,7 +91,9 @@ export default function DesktopApp({ dark }: Props) {
             </a>
 
             <a
-              href="#"
+              href="https://github.com/spiderzest/pimsalab/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`group flex items-center gap-3 px-7 h-14 rounded-2xl text-base font-semibold transition-all duration-200 ${
                 os === 'windows'
                   ? 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'

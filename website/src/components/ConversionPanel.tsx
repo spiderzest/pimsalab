@@ -143,6 +143,10 @@ export default function ConversionPanel({ dark }: Props) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="วางหรือพิมพ์ข้อความที่ผิดภาษาตรงนี้..."
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             className={`w-full h-36 bg-transparent rounded-2xl px-5 py-4 text-lg focus:outline-none resize-none ${
               dark ? 'text-[#e8e6f0] placeholder-[#4a4760]' : 'text-gray-900 placeholder-gray-400'
             }`}
