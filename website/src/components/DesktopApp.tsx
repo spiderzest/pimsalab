@@ -132,20 +132,6 @@ export default function DesktopApp({ dark }: Props) {
             </a>
           </p>
 
-          {/* Homebrew install */}
-          <div className={`max-w-md mx-auto rounded-2xl p-5 mb-6 ${
-            dark ? 'bg-white/[0.03] border border-white/5' : 'bg-gray-50 border border-gray-100'
-          }`}>
-            <p className={`text-xs font-medium mb-2 text-center ${dark ? 'text-[#9895ad]' : 'text-gray-500'}`}>
-              หรือติดตั้งผ่าน Homebrew (แนะนำสำหรับ macOS)
-            </p>
-            <div className={`flex items-center gap-2 rounded-xl px-4 py-2.5 font-mono text-sm ${
-              dark ? 'bg-black/30 text-indigo-300' : 'bg-white text-indigo-600 border border-gray-200'
-            }`}>
-              <span className={`select-none ${dark ? 'text-[#6e6b82]' : 'text-gray-300'}`}>$</span>
-              <code className="flex-1 select-all">brew install --cask --no-quarantine spiderzest/tap/pimsalab</code>
-            </div>
-          </div>
 
           <p className={`text-center text-xs ${dark ? 'text-[#4a4760]' : 'text-gray-400'}`}>
             v{VERSION} &middot; macOS 12+ &middot; Windows 10+ &middot; ฟรี
