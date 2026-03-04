@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Noto Sans Thai', 'Inter', system-ui, sans-serif;
+  --color-primary: #818cf8;
+  --color-primary-dark: #6366f1;
+  --color-accent: #f59e0b;
+  --color-surface: #1a1730;
+  --color-surface-light: rgba(255, 255, 255, 0.06);
+  --color-surface-lighter: rgba(255, 255, 255, 0.10);
+}
+
+/* Glassmorphism card */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Subtle glow on focus */
+.glow-focus:focus-within {
+  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.3), 0 0 24px -4px rgba(129, 140, 248, 0.15);
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.35s ease-out both;
+}
+
+/* Pulse for the convert button */
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.3); }
+  50% { box-shadow: 0 0 20px 4px rgba(129, 140, 248, 0.15); }
+}
+.pulse-glow {
+  animation: softPulse 2.5s ease-in-out infinite;
+}

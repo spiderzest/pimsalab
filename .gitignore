@@ -1,0 +1,46 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Rust / Cargo
+**/target/
+**/*.rs.bk
+
+# Tauri generated
+langfix/src-tauri/gen/schemas/
+
+# Vite cache
+.vite/
+
+# Claude Code
+.claude/
+
+# Large design files
+Canvas.png
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build
+*.tsbuildinfo

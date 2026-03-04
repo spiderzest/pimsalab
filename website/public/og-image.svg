@@ -1,0 +1,32 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#0e0c1d"/>
+      <stop offset="100%" stop-color="#1a0533"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Glow blobs -->
+  <circle cx="300" cy="200" r="250" fill="#6366f1" opacity="0.08"/>
+  <circle cx="900" cy="400" r="300" fill="#a855f7" opacity="0.06"/>
+  <!-- Logo box -->
+  <rect x="530" y="160" width="64" height="64" rx="16" fill="#6366f1"/>
+  <text x="562" y="203" font-family="sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">พส</text>
+  <!-- App name -->
+  <text x="600" y="280" font-family="sans-serif" font-size="56" font-weight="700" fill="white" text-anchor="middle">PimSalab</text>
+  <!-- Tagline -->
+  <text x="600" y="340" font-family="sans-serif" font-size="32" font-weight="400" fill="#9895ad" text-anchor="middle">พิมพ์ผิดภาษา? แปลงได้ทันที</text>
+  <!-- Accent line -->
+  <rect x="500" y="380" width="200" height="3" rx="1.5" fill="url(#accent)" opacity="0.6"/>
+  <!-- Subtitle -->
+  <text x="600" y="430" font-family="sans-serif" font-size="20" font-weight="400" fill="#6e6b82" text-anchor="middle">แก้ข้อความพิมพ์ผิดภาษา TH↔EN ฟรี</text>
+  <!-- Bottom badge -->
+  <rect x="490" y="470" width="220" height="36" rx="18" fill="#6366f1" opacity="0.15"/>
+  <text x="600" y="495" font-family="sans-serif" font-size="16" font-weight="600" fill="#818cf8" text-anchor="middle">ฟรี — ไม่ต้องติดตั้ง</text>
+</svg>
