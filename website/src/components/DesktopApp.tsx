@@ -1,16 +1,30 @@
 import { useEffect, useState } from 'react'
 
+const VERSION = '0.1.0'
+const RELEASE_BASE = `https://github.com/spiderzest/pimsalab/releases/download/v${VERSION}`
+const DOWNLOADS = {
+  macARM: `${RELEASE_BASE}/PimSalab_${VERSION}_aarch64.dmg`,
+  macIntel: `${RELEASE_BASE}/PimSalab_${VERSION}_x64.dmg`,
+  windowsExe: `${RELEASE_BASE}/PimSalab_${VERSION}_x64-setup.exe`,
+}
+
 interface Props {
   dark: boolean
 }
 
 export default function DesktopApp({ dark }: Props) {
   const [os, setOS] = useState<'mac' | 'windows' | 'other'>('other')
+  const [isAppleSilicon, setIsAppleSilicon] = useState(true)
 
   useEffect(() => {
     const ua = navigator.userAgent.toLowerCase()
-    if (ua.includes('mac')) setOS('mac')
-    else if (ua.includes('win')) setOS('windows')
+    if (ua.includes('mac')) {
+      setOS('mac')
+      // Detect Intel Mac (Apple Silicon Macs don't expose "Intel" in UA when running natively)
+      if (ua.includes('intel')) setIsAppleSilicon(false)
+    } else if (ua.includes('win')) {
+      setOS('windows')
+    }
   }, [])
 
   const modKey = os === 'mac' ? '⌘' : 'Ctrl'
@@ -68,11 +82,9 @@ export default function DesktopApp({ dark }: Props) {
           </div>
 
           {/* Download buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <a
-              href="https://github.com/spiderzest/pimsalab/releases/latest"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={isAppleSilicon ? DOWNLOADS.macARM : DOWNLOADS.macIntel}
               className={`group flex items-center gap-3 px-7 h-14 rounded-2xl text-base font-semibold transition-all duration-200 ${
                 os === 'mac'
                   ? 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
@@ -86,14 +98,15 @@ export default function DesktopApp({ dark }: Props) {
               </svg>
               <div className="text-left">
                 <div className="text-[10px] opacity-70 leading-none mb-0.5">Download for</div>
-                <div className="leading-none">macOS</div>
+                <div className="leading-none">macOS {isAppleSilicon ? '(Apple Silicon)' : '(Intel)'}</div>
               </div>
+              <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
             </a>
 
             <a
-              href="https://github.com/spiderzest/pimsalab/releases/latest"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={DOWNLOADS.windowsExe}
               className={`group flex items-center gap-3 px-7 h-14 rounded-2xl text-base font-semibold transition-all duration-200 ${
                 os === 'windows'
                   ? 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
@@ -109,11 +122,34 @@ export default function DesktopApp({ dark }: Props) {
                 <div className="text-[10px] opacity-70 leading-none mb-0.5">Download for</div>
                 <div className="leading-none">Windows</div>
               </div>
+              <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
             </a>
           </div>
 
+          {/* Alt download link for other Mac chip */}
+          <p className={`text-center text-xs mb-4 ${dark ? 'text-[#6e6b82]' : 'text-gray-400'}`}>
+            {os === 'mac' && (
+              <a
+                href={isAppleSilicon ? DOWNLOADS.macIntel : DOWNLOADS.macARM}
+                className="underline underline-offset-2 hover:text-indigo-400 transition-colors"
+              >
+                {isAppleSilicon ? 'ใช้ Mac Intel? ดาวน์โหลดเวอร์ชัน Intel' : 'ใช้ Apple Silicon? ดาวน์โหลดเวอร์ชัน ARM'}
+              </a>
+            )}
+            {os !== 'mac' && (
+              <>
+                macOS:{' '}
+                <a href={DOWNLOADS.macARM} className="underline underline-offset-2 hover:text-indigo-400 transition-colors">Apple Silicon</a>
+                {' · '}
+                <a href={DOWNLOADS.macIntel} className="underline underline-offset-2 hover:text-indigo-400 transition-colors">Intel</a>
+              </>
+            )}
+          </p>
+
           <p className={`text-center text-xs ${dark ? 'text-[#4a4760]' : 'text-gray-400'}`}>
-            v0.1.0 &middot; macOS 12+ &middot; Windows 10+ &middot; ฟรี
+            v{VERSION} &middot; macOS 12+ &middot; Windows 10+ &middot; ฟรี
           </p>
         </div>
       </div>

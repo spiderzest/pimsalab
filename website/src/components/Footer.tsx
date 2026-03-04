@@ -25,7 +25,7 @@ export default function Footer({ dark }: Props) {
           {/* Links */}
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com"
+              href="https://github.com/spiderzest/pimsalab"
               target="_blank"
               rel="noopener noreferrer"
               className={`text-sm transition-colors ${
@@ -35,7 +35,9 @@ export default function Footer({ dark }: Props) {
               GitHub
             </a>
             <a
-              href="#"
+              href="https://github.com/spiderzest/pimsalab/issues"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`text-sm transition-colors ${
                 dark ? 'text-[#9895ad] hover:text-white' : 'text-gray-500 hover:text-gray-900'
               }`}
