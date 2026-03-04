@@ -7,9 +7,11 @@ use tauri::{
 mod convert;
 
 #[tauri::command]
-fn simulate_copy() {
+fn simulate_copy() -> Result<(), String> {
     use enigo::{Enigo, Key, Keyboard, Settings};
-    let mut enigo = Enigo::new(&Settings::default()).unwrap();
+    let mut enigo = Enigo::new(&Settings::default()).map_err(|e| {
+        format!("ไม่สามารถควบคุมแป้นพิมพ์ได้ — กรุณาอนุญาต Accessibility ใน System Settings > Privacy & Security > Accessibility: {e}")
+    })?;
 
     // Release all modifier keys first (hotkey ⌘+Shift+L may still be held)
     #[cfg(target_os = "macos")]
@@ -42,12 +44,15 @@ fn simulate_copy() {
 
     // Wait for clipboard to update
     std::thread::sleep(std::time::Duration::from_millis(200));
+    Ok(())
 }
 
 #[tauri::command]
-fn simulate_paste() {
+fn simulate_paste() -> Result<(), String> {
     use enigo::{Enigo, Key, Keyboard, Settings};
-    let mut enigo = Enigo::new(&Settings::default()).unwrap();
+    let mut enigo = Enigo::new(&Settings::default()).map_err(|e| {
+        format!("ไม่สามารถควบคุมแป้นพิมพ์ได้ — กรุณาอนุญาต Accessibility: {e}")
+    })?;
 
     // Release modifier keys first
     #[cfg(target_os = "macos")]
@@ -75,6 +80,7 @@ fn simulate_paste() {
         enigo.key(Key::Unicode('v'), enigo::Direction::Click).ok();
         enigo.key(Key::Control, enigo::Direction::Release).ok();
     }
+    Ok(())
 }
 
 #[tauri::command]
