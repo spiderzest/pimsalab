@@ -14,17 +14,11 @@ interface Props {
 
 export default function DesktopApp({ dark }: Props) {
   const [os, setOS] = useState<'mac' | 'windows' | 'other'>('other')
-  const [isAppleSilicon, setIsAppleSilicon] = useState(true)
 
   useEffect(() => {
     const ua = navigator.userAgent.toLowerCase()
-    if (ua.includes('mac')) {
-      setOS('mac')
-      // Detect Intel Mac (Apple Silicon Macs don't expose "Intel" in UA when running natively)
-      if (ua.includes('intel')) setIsAppleSilicon(false)
-    } else if (ua.includes('win')) {
-      setOS('windows')
-    }
+    if (ua.includes('mac')) setOS('mac')
+    else if (ua.includes('win')) setOS('windows')
   }, [])
 
   const modKey = os === 'mac' ? '⌘' : 'Ctrl'
@@ -81,10 +75,10 @@ export default function DesktopApp({ dark }: Props) {
             </p>
           </div>
 
-          {/* Download buttons */}
+          {/* Download buttons — macOS (Apple Silicon) เป็นหลัก */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <a
-              href={isAppleSilicon ? DOWNLOADS.macARM : DOWNLOADS.macIntel}
+              href={DOWNLOADS.macARM}
               className={`group flex items-center gap-3 px-7 h-14 rounded-2xl text-base font-semibold transition-all duration-200 ${
                 os === 'mac'
                   ? 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
@@ -98,7 +92,7 @@ export default function DesktopApp({ dark }: Props) {
               </svg>
               <div className="text-left">
                 <div className="text-[10px] opacity-70 leading-none mb-0.5">Download for</div>
-                <div className="leading-none">macOS {isAppleSilicon ? '(Apple Silicon)' : '(Intel)'}</div>
+                <div className="leading-none">macOS (Apple Silicon)</div>
               </div>
               <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -128,24 +122,14 @@ export default function DesktopApp({ dark }: Props) {
             </a>
           </div>
 
-          {/* Alt download link for other Mac chip */}
+          {/* macOS Intel — ลิงก์รอง */}
           <p className={`text-center text-xs mb-4 ${dark ? 'text-[#6e6b82]' : 'text-gray-400'}`}>
-            {os === 'mac' && (
-              <a
-                href={isAppleSilicon ? DOWNLOADS.macIntel : DOWNLOADS.macARM}
-                className="underline underline-offset-2 hover:text-indigo-400 transition-colors"
-              >
-                {isAppleSilicon ? 'ใช้ Mac Intel? ดาวน์โหลดเวอร์ชัน Intel' : 'ใช้ Apple Silicon? ดาวน์โหลดเวอร์ชัน ARM'}
-              </a>
-            )}
-            {os !== 'mac' && (
-              <>
-                macOS:{' '}
-                <a href={DOWNLOADS.macARM} className="underline underline-offset-2 hover:text-indigo-400 transition-colors">Apple Silicon</a>
-                {' · '}
-                <a href={DOWNLOADS.macIntel} className="underline underline-offset-2 hover:text-indigo-400 transition-colors">Intel</a>
-              </>
-            )}
+            <a
+              href={DOWNLOADS.macIntel}
+              className="underline underline-offset-2 hover:text-indigo-400 transition-colors"
+            >
+              ใช้ Mac รุ่นเก่า (Intel)?
+            </a>
           </p>
 
           <p className={`text-center text-xs ${dark ? 'text-[#4a4760]' : 'text-gray-400'}`}>
